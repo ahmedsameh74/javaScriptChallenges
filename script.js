@@ -16,10 +16,12 @@ let playerOneScore = 0;
 let playerTwoScore = 0;
 let playerOneTotScore = 0;
 let playerTwoTotScore = 0;
+let playing = true;
 
 
 
 const rollDice = () => {
+    if(playing){
     diceImg.classList.remove('hidden')
     const rollResult = Math.trunc(Math.random() * 6) + 1;
     diceImg.src = `dice-${[rollResult]}.png`;
@@ -52,9 +54,11 @@ const rollDice = () => {
         }
     }
 }
+}
 
 
 const holdScore = () => {
+    if(playing){
     if(playerOne.classList.contains('player--active')){
         playerOneTotScore += playerOneScore;
         playerOneTotal.innerHTML = playerOneTotScore;
@@ -63,8 +67,11 @@ const holdScore = () => {
         playerOne.classList.remove('player--active');
         playerTwo.classList.add('player--active');
         if(playerOneTotScore >= 100){
-            alert('Player 1 wins!');
-            resetGame();
+            playerOne.classList.add('player--winner');
+            playerOne.classList.remove('player--active');
+            diceImg.classList.add('hidden');
+            playing = false;
+            // resetGame();
         }
     }else{
         playerTwoTotScore += playerTwoScore;
@@ -74,10 +81,14 @@ const holdScore = () => {
         playerTwo.classList.remove('player--active');
         playerOne.classList.add('player--active');
         if(playerTwoTotScore >= 100){
-            alert('Player 2 wins!');
-            resetGame();
+            playerTwo.classList.add('player--winner');
+            playerTwo.classList.remove('player--active');
+            diceImg.classList.add('hidden');
+            playing = false;
+            // resetGame();
         }
     }
+}
 }
 
 
@@ -95,6 +106,8 @@ const resetGame = () => {
     diceImg.classList.add('hidden');
     playerOne.classList.add('player--active');
     playerTwo.classList.remove('player--active');
+    playerOne.classList.remove('player--winner');
+    playerTwo.classList.remove('player--winner');
 }
 
 
