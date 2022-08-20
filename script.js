@@ -1,1 +1,1 @@
-// javaScript challenges
+// javaScript challenges, tasks, and small projects
