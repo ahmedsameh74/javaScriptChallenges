@@ -97,6 +97,7 @@ const resetGame = () => {
     const currentScore = document.querySelectorAll('.current-score');
     playerOneTotScore = 0;
     playerTwoTotScore = 0;
+    playing = true;
     score.forEach(score => {
         score.innerHTML = 0;
     });
